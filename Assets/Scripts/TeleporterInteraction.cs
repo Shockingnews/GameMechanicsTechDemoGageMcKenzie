@@ -9,10 +9,13 @@ public class TeleporterInteraction : MonoBehaviour, IInteraction
     private void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        controller = Player.GetComponent<CharacterController>();
     }
     public void Interact()
     {
+        Vector3 test = new Vector3 (targetTeleporter.position.x - Player.transform.position.x, 0f, targetTeleporter.position.z - Player.transform.position.z);
         Debug.Log("hi it's moving");
-        Player.transform.position = targetTeleporter.position;
+        controller.Move(test);
+        
     }
 }

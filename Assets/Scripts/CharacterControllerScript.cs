@@ -21,6 +21,7 @@ public class CharacterControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         Vector3 movement = new Vector3(xMove, 0f, yMove);
         controller.Move(movement * Time.deltaTime * speed);
         
@@ -29,7 +30,7 @@ public class CharacterControllerScript : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
          movementInput = context.action.ReadValue<Vector2>();
-        player.transform.forward = (movementInput);
+        //player.transform.forward = (movementInput);
 
         xMove = movementInput.x;
         yMove = movementInput.y;
