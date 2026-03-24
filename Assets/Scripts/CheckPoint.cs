@@ -25,6 +25,17 @@ public class CheckPoint : MonoBehaviour
     {
         
     }
+    void Update()
+    {
+        if (controller.transform.position.y < -5f)
+        {
+            Vector3 test = saveStatePos.position - controller.transform.position;
+            
+
+            controller.Move(test);
+            
+        }
+    }
 
     public void OnDeath()
     {
