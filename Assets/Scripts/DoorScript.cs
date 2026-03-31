@@ -16,9 +16,7 @@ public class DoorScript : MonoBehaviour
 
     float _speed = 10;
 
-    [SerializeField]
-    AnimationCurve _animation;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
 
@@ -31,15 +29,14 @@ public class DoorScript : MonoBehaviour
         if (_isOpening)
         {
             _targetPos = _openPos;
-            //_doorGfx.transform.localPosition = Vector3.MoveTowards(_doorGfx.transform.localPosition, _openPos,_speed*Time.deltaTime);
+           
         }
         else if (_isClosing)
         {
             _targetPos = _closedPos;
-            //_doorGfx.transform.localPosition = Vector3.MoveTowards(current: _doorGfx.transform.localPosition, target:_closedPos, _speed * Time.deltaTime);
+            
         }
-        _doorGfx.transform.localPosition = Vector3.MoveTowards(current: _doorGfx.transform.localPosition, target: _targetPos
-            , _speed * Time.deltaTime);
+        _doorGfx.transform.localPosition = Vector3.MoveTowards(current: _doorGfx.transform.localPosition, target: _targetPos, _speed * Time.deltaTime);
 
         if (Vector3.Distance(a: _doorGfx.transform.localPosition, b: _targetPos) <= 0.001f)
         {

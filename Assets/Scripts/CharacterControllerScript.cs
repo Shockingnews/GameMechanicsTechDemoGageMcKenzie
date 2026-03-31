@@ -47,29 +47,48 @@ public class CharacterControllerScript : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        
+
         if (controller.isGrounded)
         {
+            Debug.Log(context.phase);
+            if (context.started)
+            {
+                Debug.Log(context.phase);
+            }
+            Debug.Log(context.phase);
             if (context.performed)
             {
+                //Debug.Log("context.performed");
                 Vector3 moveUp = transform.up * 5f;
                 controller.Move(moveUp);
             }
+            Debug.Log(context.phase);
+            if (context.canceled)
+            {
+                //Debug.Log("context.canceled");
+            }
+            Debug.Log(context.phase);
         }
+
     }
     public void OnLook(InputAction.CallbackContext context)
     {
-        //rotationInput = context.action.ReadValue<Vector2>();
+        rotationInput = context.ReadValue<Vector2>();
+        
 
-        //yRotation = rotationInput.y;
-        //xRotation = rotationInput.x;
+        yRotation += rotationInput.y;
+        xRotation += rotationInput.x;
 
-        //// gives you a limt on up and down movement
-        ////xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+         //gives you a limt on up and down movement
+        yRotation = Mathf.Clamp(yRotation, -90f, 90f);
 
-        //// rotates cam and player in the direction of mouse
-        ////cam.transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
-        //transform.rotation = Quaternion.Euler( -rotationInput.y, rotationInput.x, 0f);
+        //rotates cam and player in the direction of mouse
+        //cam.transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
+        transform.rotation = Quaternion.Euler( -yRotation, xRotation, 0f);
 
     }
+
+
 
 }
