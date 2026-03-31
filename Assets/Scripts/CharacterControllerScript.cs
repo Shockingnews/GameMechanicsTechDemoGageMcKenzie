@@ -60,7 +60,8 @@ public class CharacterControllerScript : MonoBehaviour
             if (context.performed)
             {
                 //Debug.Log("context.performed");
-                Vector3 moveUp = transform.up * 5f;
+                //transform.up * 5f
+                Vector3 moveUp =new Vector3(0f, 5f, 0f);
                 controller.Move(moveUp);
             }
             Debug.Log(context.phase);
