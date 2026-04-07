@@ -2,15 +2,30 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    
-    void Start()
+    public Transform TagrgetPos;
+    private Transform StartPos;
+    bool atStart;
+
+    private void Start()
     {
-        
+        StartPos = gameObject.transform;
     }
 
-    
-    void Update()
+    private void Update()
     {
-        
+        if(TagrgetPos.position != gameObject.transform.position)
+        {
+
+        }
+
+        else if (atStart == false)
+        {
+
+        }
+
+        if(TagrgetPos.position == gameObject.transform.position)
+        {
+            atStart = false;
+        }
     }
 }
