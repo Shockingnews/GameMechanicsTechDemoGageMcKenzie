@@ -13,19 +13,35 @@ public class MovingPlatform : MonoBehaviour
 
     private void Update()
     {
-        if(TagrgetPos.position != gameObject.transform.position)
-        {
+        
 
+        if (atStart == false)
+        {
+            while(atStart == false)
+            {
+            transform.position = Vector3.Lerp(TagrgetPos.position, StartPos.position, Time.deltaTime * 5);
+                if (StartPos.position == gameObject.transform.position)
+                {
+                    atStart = true;
+                }
+            }
+        }
+        if (TagrgetPos.position != gameObject.transform.position)
+        {
+            transform.position = Vector3.Lerp(StartPos.position, TagrgetPos.position, Time.deltaTime * 1.5f);
         }
 
-        else if (atStart == false)
-        {
-
-        }
-
-        if(TagrgetPos.position == gameObject.transform.position)
+        if (TagrgetPos.position == gameObject.transform.position)
         {
             atStart = false;
+            while (atStart == false)
+            {
+                transform.position = Vector3.Lerp(TagrgetPos.position, StartPos.position, Time.deltaTime * 5);
+                if (StartPos.position == gameObject.transform.position)
+                {
+                    atStart = true;
+                }
+            }
         }
     }
 }
