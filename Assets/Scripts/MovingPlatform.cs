@@ -3,45 +3,41 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     public Transform TagrgetPos;
-    private Transform StartPos;
-    bool atStart;
+    public Transform StartPos;
+    
 
-    private void Start()
+    private Vector3 nextPos;
+
+    private void Awake()
     {
-        StartPos = gameObject.transform;
+        
+        
+        nextPos = TagrgetPos.position;
     }
 
     private void Update()
     {
         
 
-        if (atStart == false)
-        {
-            while(atStart == false)
-            {
-            transform.position = Vector3.Lerp(TagrgetPos.position, StartPos.position, Time.deltaTime * 5);
-                if (StartPos.position == gameObject.transform.position)
-                {
-                    atStart = true;
-                }
-            }
-        }
-        if (TagrgetPos.position != gameObject.transform.position)
-        {
-            transform.position = Vector3.Lerp(StartPos.position, TagrgetPos.position, Time.deltaTime * 1.5f);
-        }
+        
 
-        if (TagrgetPos.position == gameObject.transform.position)
-        {
-            atStart = false;
-            while (atStart == false)
+            transform.position = Vector3.MoveTowards(transform.position, nextPos, Time.deltaTime * 5f);
+
+            if(transform.position == nextPos)
             {
-                transform.position = Vector3.Lerp(TagrgetPos.position, StartPos.position, Time.deltaTime * 5);
-                if (StartPos.position == gameObject.transform.position)
+
+                
+                if(nextPos != TagrgetPos.position)
                 {
-                    atStart = true;
+                    nextPos = TagrgetPos.position;
+                }
+                else if (nextPos != StartPos.position)
+                {
+                    nextPos = StartPos.position;
                 }
             }
-        }
+
+
+        
     }
 }
